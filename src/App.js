@@ -1,50 +1,43 @@
 import React, { Component } from 'react';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
+import { connect } from 'react-redux';
 
 class App extends Component {
-  state = {
-    todos: [
-      {
-        id: 1,
-        content: 'delectus aut autem',
-      },
-      {
-        id: 2,
-        content: 'quis ut nam facilis et officia qui',
-      },
-      {
-        id: 3,
-        content: 'fugiat veniam minus',
-      },
-      {
-        id: 4,
-        content: 'et porro tempora',
-      },
-      {
-        id: 5,
-        content: 'laboriosam mollitia et enim',
-      },
-    ],
-  };
-
   addTodo = (todo) => {
-    console.log('todo.content', todo.content);
+    this.props.addTodo(todo.content);
   };
 
   deleteTodo = (todoId) => {
-    console.log('todoId', todoId);
+    this.props.deleteTodo(todoId);
   };
 
   render() {
     return (
       <div className="todo-app container">
         <h1 className="center blue-text">Todo's</h1>
-        <Todos todos={this.state.todos} deleteTodo={this.deleteTodo} />
+        <Todos todos={this.props.todos} deleteTodo={this.deleteTodo} />
         <AddTodo addTodo={this.addTodo} />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    todos: state.todos,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTodo: (content) => {
+      dispatch({ type: 'ADD_TODO', payload: { content } });
+    },
+    deleteTodo: (id) => {
+      dispatch({ type: 'DELETE_TODO', payload: { id } });
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
