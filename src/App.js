@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
 import { connect } from 'react-redux';
+import { addTodo, deleteTodo } from './actions/todoActions';
 
 class App extends Component {
   addTodo = (todo) => {
@@ -23,7 +24,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     todos: state.todos,
   };
@@ -32,10 +33,10 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addTodo: (content) => {
-      dispatch({ type: 'ADD_TODO', payload: { content } });
+      dispatch(addTodo(content));
     },
     deleteTodo: (id) => {
-      dispatch({ type: 'DELETE_TODO', payload: { id } });
+      dispatch(deleteTodo(id));
     },
   };
 };
