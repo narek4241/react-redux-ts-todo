@@ -1,3 +1,5 @@
+![react-redux-todo](https://user-images.githubusercontent.com/50343936/106588757-9f60fa80-6564-11eb-9654-03a77555a7ce.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
