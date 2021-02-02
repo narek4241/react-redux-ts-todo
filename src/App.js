@@ -28,12 +28,20 @@ class App extends Component {
     ],
   };
 
+  addTodo = (todo) => {
+    console.log('todo.content', todo.content);
+  };
+
+  deleteTodo = (todoId) => {
+    console.log('todoId', todoId);
+  };
+
   render() {
     return (
       <div className="todo-app container">
         <h1 className="center blue-text">Todo's</h1>
-        <Todos todos={this.state.todos} />
-        <AddTodo />
+        <Todos todos={this.state.todos} deleteTodo={this.deleteTodo} />
+        <AddTodo addTodo={this.addTodo} />
       </div>
     );
   }

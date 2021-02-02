@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.todo-item:hover {
+  text-decoration: line-through;
+  cursor: pointer;
+}
