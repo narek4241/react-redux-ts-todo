@@ -1,7 +1,7 @@
 import { ActionTypes } from './types';
 
 export interface Todo {
-  id: number;
+  id?: number;
   content: string;
 }
 

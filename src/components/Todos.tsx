@@ -1,12 +1,18 @@
 import React from 'react';
+import { Todo, deleteTodo } from '../actions';
 
-const Todos = ({ todos, deleteTodo }) => {
+export interface Props {
+  todos: Todo[];
+  deleteTodo: (todoId: number) => void;
+}
+
+const Todos = ({ todos, deleteTodo }: Props) => {
   return (
     <div className="todos collection">
       {todos.length ? (
         todos.map((todo) => (
           <div
-            onClick={() => deleteTodo(todo.id)}
+            onClick={() => (todo.id ? deleteTodo(todo.id) : null)}
             key={todo.id}
             className="todo-item collection-item"
           >

@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
+import { Todo } from '../actions';
 
-class AddTodo extends Component {
+export interface Props {
+  addTodo: (todo: Todo) => void;
+}
+
+export interface State {
+  todo: Todo;
+}
+
+class AddTodo extends Component<Props, State> {
   state = {
     todo: {
       content: '',
     },
   };
 
-  handleSubmit = (e) => {
+  // #task avoid using any opt2
+  handleSubmit = (e: any) => {
     e.preventDefault();
     this.props.addTodo(this.state.todo);
     this.setState({
@@ -17,7 +27,7 @@ class AddTodo extends Component {
     });
   };
 
-  handleChange = (e) => {
+  handleChange = (e: any) => {
     this.setState({
       todo: {
         content: e.target.value,

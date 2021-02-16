@@ -1,4 +1,4 @@
-import { AddTodoAction, DeleteTodoAction } from '../actions/todos';
+import { AddTodoAction, DeleteTodoAction } from './todos';
 
 export enum ActionTypes {
   addTodo,

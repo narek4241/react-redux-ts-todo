@@ -3,6 +3,7 @@ import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
 import { connect } from 'react-redux';
 import { Todo, addTodo, deleteTodo } from './actions';
+import { Dispatch } from 'redux';
 
 export interface Props {
   todos: Todo[];
@@ -40,18 +41,16 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-// rm
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     addTodo: (content) => {
-//       dispatch(addTodo(content));
-//     },
-//     deleteTodo: (id) => {
-//       dispatch(deleteTodo(id));
-//     },
-//   };
-// };
+// #note done below fully opt -> prev-ly used { addTodo, deleteTodo }, working opt
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    addTodo: (content: string): any => {
+      dispatch(addTodo(content));
+    },
+    deleteTodo: (id: number): any => {
+      dispatch(deleteTodo(id));
+    },
+  };
+};
 
-// rm
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
-export default connect(mapStateToProps, { addTodo, deleteTodo })(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
