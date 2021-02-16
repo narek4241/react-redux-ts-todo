@@ -1,3 +1,5 @@
+import { Action, ActionTypes } from '../actions';
+
 const initState = {
   todos: [
     {
@@ -23,9 +25,9 @@ const initState = {
   ],
 };
 
-export const rootReducer = (state = initState, action) => {
+export const rootReducer = (state = initState, action: Action) => {
   switch (action.type) {
-    case 'ADD_TODO':
+    case ActionTypes.addTodo:
       const randomId = Math.round(Math.random() * 100000);
       return {
         ...state,
@@ -37,19 +39,15 @@ export const rootReducer = (state = initState, action) => {
           },
         ],
       };
-      break;
-    case 'DELETE_TODO':
+    case ActionTypes.deleteTodo:
       return {
         ...state,
         todos: state.todos.filter((todo) => todo.id !== action.payload.id),
       };
-      break;
 
     default:
-      break;
+      return state;
   }
-
-  return state;
 };
 
 export default rootReducer;
